@@ -12,7 +12,7 @@ The method applied is based on [BEGAN](https://arxiv.org/abs/1703.10717) (David 
 
 1. Configurable upsample method: tranposed convolutional layer or nearest neighbour.
 2. Configurable repetitive number of layers in each convolutional block.
-3. Configurable input size ($8*2^n$).
+3. Configurable input size (8*2^n​).
 
 The code should be self-explanatory because each class and function contains docstring and parameter description.
 
