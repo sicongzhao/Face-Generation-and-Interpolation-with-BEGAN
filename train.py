@@ -39,7 +39,7 @@ parser.add_argument('--mean', type=float, default=0, help='The desired mean of t
 parser.add_argument('--std', type=float, default=0.002, help='The desired standard deviation of the initialized weight.')
 
 # Training Params
-parser.add_argument('--batch_size', type=int, default=16, help='Dataloader batch size.')
+parser.add_argument('--batch_size', type=int, default=64, help='Dataloader batch size.')
 parser.add_argument('--n_epochs', type=int, default=1000, help='Number of epochs to train for.')
 parser.add_argument('--lr', type=float, default=0.0001, help='Learning rate.')
 parser.add_argument('--b1', type=float, default=0.5, help='Beta1 for Adam optimizer.')

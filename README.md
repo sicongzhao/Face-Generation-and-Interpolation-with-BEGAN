@@ -1,6 +1,6 @@
 # Face Generation and Interpolation with BEGAN (PyTorch)
 
-<img src="./assets/cover.png">
+<img src="./assets/cover.png" width="60%" style="float:left">
 
 This project is about generating fake faces from random noise vector. The model is trained on [CelebFaces](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) dataset, so we can generate beautiful faces.
 
