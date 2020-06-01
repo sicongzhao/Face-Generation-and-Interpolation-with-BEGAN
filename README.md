@@ -86,7 +86,7 @@ A potential method to improve the quality of the generated image is that, instea
 
 | Param           | Default      | Type  | Note                                                         |
 | --------------- | ------------ | ----- | ------------------------------------------------------------ |
-| batch_size      | 16           | int   | Dataloader batch size.                                       |
+| batch_size      | 64           | int   | Dataloader batch size.                                       |
 | n_epochs        | 1000         | int   | Number of epochs to train for.                               |
 | lr              | 0.0002       | float | Learning rate.                                               |
 | b1              | 0.5          | float | Beta1 for Adam optimizer.                                    |
@@ -104,8 +104,15 @@ A potential method to improve the quality of the generated image is that, instea
 
 ## Results
 
-The model is running. Below is the current results (2nd epochs).
+The model is running. Below is the current results (10th epochs).
+
+1. **Face Generation**
 
 <img src="./assets/36000.png">
 
-The results for interpolation will also be added after the training ends.
+2. Interpolation
+
+![interpolation](/Users/sicongzhao/Library/Mobile Documents/com~apple~CloudDocs/Project/Daily ML/20200528-BEGAN/assets/interpolation.png)
+
+
+
