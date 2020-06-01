@@ -8,13 +8,34 @@ This project is about generating fake faces from random noise vector. The model 
 
 ## Methods
 
-The method applied is based on [BEGAN](https://arxiv.org/abs/1703.10717) (David et al.), with following modifications:
+The method applied is based on [BEGAN](https://arxiv.org/abs/1703.10717) (David et al.), the following are the main contribution of this paper:
+
+- A GAN with a simple yet robust architecture, standard training procedure with fast and stable convergence.
+- An equilibrium concept that balances the power of the discriminator against the generator.
+- A new way to control the trade-off between image diversity and visual quality.
+- An approximate measure of convergence. 
+
+
+
+In my modification, I have included following modifications:
 
 1. Configurable upsample method: tranposed convolutional layer or nearest neighbour.
 2. Configurable repetitive number of layers in each convolutional block.
 3. Configurable input size (8*2^n​).
 
 The code should be self-explanatory because each class and function contains docstring and parameter description.
+
+
+
+**My thoughts on the paper**
+
+As to the discriminator, the traditional GAN using image as input, a number between $[0,1]$ which indicates real or fake. However, BEGAN use an auto encoder to reconstruct an image (both real images and fake images), and use the mean $\mu$ of the reconstruction error as an indicator of whether the image is real ($\mu \to 0$) or fake ($\mu \to \infty$).
+
+This is the genius idea because it force the auto encoder to explore the ways to encode and decode the image (this might captures the internal structure of the image), with the improvement of the generator. The loss function was constructed in a way that if the generator does not understand how the auto encoder reconstruct an image, then it will end up with a large loss. As a result, the encoder and generator actually developed an understanding of human faces, which is supported by the interpolation experiment. 
+
+
+
+A potential method to improve the quality of the generated image is that, instead of uniform sample latent vector, we can learn the distribution of latent vectors of the real image, and then sample from the learned distribution, as the input of the generator.
 
 
 
