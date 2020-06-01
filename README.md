@@ -104,15 +104,17 @@ A potential method to improve the quality of the generated image is that, instea
 
 ## Results
 
-The model is running. Below is the current results (10th epochs).
+Training on Google Colab, the model is running, and I will keep updating the results.
+
+Below is the current results (10th epochs).
 
 1. **Face Generation**
 
-<img src="./assets/36000.png">
+<img src="./assets/36000.png" style="zoom:80%;">
 
 2. Interpolation
 
-![interpolation](/Users/sicongzhao/Library/Mobile Documents/com~apple~CloudDocs/Project/Daily ML/20200528-BEGAN/assets/interpolation.png)
+<img src="./assets/interpolation.png" alt="interpolation" />
 
 
 
