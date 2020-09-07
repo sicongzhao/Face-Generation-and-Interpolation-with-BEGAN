@@ -4,8 +4,9 @@
 import torch.nn as nn
 import math
 
-class ResNet(torch.nn.Module):
-    def __init__(self, module, alpha):
+class ResNet(nn.Module):
+    def __init__(self, module):
+        super().__init__()
         self.module = module
         self.carry = 1
 
@@ -378,5 +379,4 @@ def normal_init(m, mean, std):
         m.weight.data.normal_(mean, std)
         if m.bias.data is not None:
             m.bias.data.zero_()
-
 
