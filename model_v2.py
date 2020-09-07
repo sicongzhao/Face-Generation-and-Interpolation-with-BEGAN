@@ -12,6 +12,8 @@ class ResNet(nn.Module):
 
     def forward(self, inputs):
         self.carry += 1/10000
+        if self.carry >= 1:
+            self.carrt = 1
         return (1 - self.carry) * self.module(inputs) + self.carry * inputs
 
 def conv_block(in_dim,out_dim,n_layers):
