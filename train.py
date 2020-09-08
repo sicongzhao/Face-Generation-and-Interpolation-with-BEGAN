@@ -12,11 +12,13 @@ from torchvision.utils import save_image
 from model import *
 from dataloader import *
 import zipfile
+import os
+import time
 
 # Instruction:
 # Download "celeba.zip" from https://drive.google.com/file/d/1EtIVXDLFNI1szq6mAso0746tm4sFxGBR/view?usp=sharing
 
-# Unzip data
+Unzip data
 with zipfile.ZipFile("celeba.zip","r") as zip_ref:
   zip_ref.extractall("data_faces/")
 
@@ -44,7 +46,7 @@ parser.add_argument('--n_epochs', type=int, default=1000, help='Number of epochs
 parser.add_argument('--lr', type=float, default=0.0001, help='Learning rate.')
 parser.add_argument('--b1', type=float, default=0.5, help='Beta1 for Adam optimizer.')
 parser.add_argument('--b2', type=float, default=0.999, help='Beta2 for Adam optimizer.')
-parser.add_argument('--outf', default='./output/', help='Folder to output images and model checkpoints.')
+parser.add_argument('--outf', default='./output', help='Folder to output images and model checkpoints.')
 parser.add_argument('--data_path', default='./data_faces', help='Which dataset to train on.')
 parser.add_argument('--lambda_k', type=float, default=0.001, help='Learning rate of k.')
 parser.add_argument('--gamma', type=float, default=0.75, help='Balance bewteen D and G.')
@@ -54,6 +56,13 @@ parser.add_argument('--lr_update_step', type=int, default=3000, help='Decay lr t
 parser.add_argument('--lr_gamma', type=float, default=0.5, help='The gamma of lr_scheduler, multiplicative factor of lr decay.')
 
 opt = parser.parse_args()
+
+# Check existance of output folder
+if os.path.isdir(opt.outf):
+    new_path = opt.outf + '_' + str(time.time())
+    os.rename(opt.outf, new_path)
+# Make a new output folder
+os.makedirs(opt.outf)
 
 # Data Loader
 data_loader = load_data(opt.batch_size, opt.data_path, opt.input_dim)
@@ -131,8 +140,8 @@ for n in range(opt.n_epochs):
             avg_rwd = np.mean(M_rolling)
             if best_score > avg_rwd:
                 best_score = avg_rwd                
-                torch.save(G, "%sG.pth" % opt.outf)
-                torch.save(G, "%sD.pth" % opt.outf)
+                torch.save(G, "%s/G.pth" % opt.outf)
+                torch.save(G, "%s/D.pth" % opt.outf)
                 print('Model_updated in epoch: %d, batch: %d' % (n, batches_done))
 
             print(
@@ -141,7 +150,7 @@ for n in range(opt.n_epochs):
             )
 
         if batches_done % opt.sample_interval == 0:
-            save_image(gen_imgs.data[:16], "%s%d.png" % (opt.outf, batches_done), nrow=4, normalize=True)
+            save_image(gen_imgs.data[:16], "%s/%d.png" % (opt.outf, batches_done), nrow=4, normalize=True)
         # Decay learning rate when the convergence measure stalls
         if batches_done % opt.lr_update_step == opt.lr_update_step - 1:
             cur_measure = torch.tensor(M_history).mean()
