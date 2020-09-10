@@ -71,7 +71,6 @@ A potential method to improve the quality of the generated image is that, instea
 | ---------- | ------- | ----- | ------------------------------------------------------------ |
 | input_dim  | 32      | int   | The height / width of the input image to network             |
 | output_dim | 32      | int   | The height / width of the output image of the network        |
-| nz         | 64      | int   | Size of the latent z vector                                  |
 | hidden_dim | 64      | int   | Hidden dimension of the auto encoder, should equal to nz     |
 | ngf        | 64      | int   | The number of filters in the generator.                      |
 | ndf        | 64      | int   | The number of filters in the discriminator.                  |
