@@ -27,7 +27,6 @@ parser = argparse.ArgumentParser()
 # Model Params
 parser.add_argument('--input_dim', type=int, default=32, help='The height / width of the input image to network.')
 parser.add_argument('--output_dim', type=int, default=32, help='The height / width of the output image of the network.')
-parser.add_argument('--nz', type=int, default=64, help='Size of the latent z vector.')
 parser.add_argument('--hidden_dim', type=int, default=64, help='Hidden dimension of the auto encoder, should equal to nz.')
 parser.add_argument('--ngf', type=int, default=64, help='The number of filters in the generator.')
 parser.add_argument('--ndf', type=int, default=64, help='The number of filters in the discriminator.')
@@ -98,7 +97,7 @@ for n in range(opt.n_epochs):
         real_imgs = real_imgs*2 - 1
 
         # Noise
-        z = torch.empty(real_imgs.size(0), opt.nz).uniform_(-1, 1)
+        z = torch.empty(real_imgs.size(0), opt.hidden_dim).uniform_(-1, 1)
         if torch.cuda.is_available():
             z = z.cuda()
             real_imgs = real_imgs.cuda()
